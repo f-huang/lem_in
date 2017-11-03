@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/03 16:48:28 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/03 18:39:29 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,25 @@
 NAME	:=	lem_in
 # ====================
 
+# ===== Subdirectories =====
+ROOMDIR	:=	room/
+TUBEDIR	:=	tube/
+# ==========================
+
 # ===== Standard =====
 CC		:=	clang -pipe
 CFLAGS	:=	-Wall -Wextra -Werror -g3
 SRCDIR	:=	src/
 OBJDIR	:=	obj/
 BINDIR	:=	bin/
-INCDIR	:=	incltude/
+INCDIR	:=	include/
 LIBFT	:=	libft/
 LIBDIR	:=	lib/
-SRC		:=	$(shell ls $(SRCDIR))
+SRC		:=	main.c					\
+			$(ROOMDIR)add.c			\
+			$(ROOMDIR)delete_all.c	\
+			$(TUBEDIR)add.c			\
+			$(TUBEDIR)delete_all.c
 OBJ		:=	$(SRC:%.c=$(OBJDIR)%.o)
 INC		:=	-I./$(INCDIR) -I./$(LIBFT)$(INCDIR)
 LIBPATH	:=	-L./$(LIBFT)$(LIBDIR) -lft -lftprintf
@@ -59,6 +68,8 @@ $(OBJDIR)%.o: $(SRCDIR)%.c $(CACHEF)
 
 $(CACHEF):
 	test -d $(OBJDIR) || mkdir $(OBJDIR)
+	test -d $(OBJDIR)$(ROOMDIR) || mkdir $(OBJDIR)$(ROOMDIR)
+	test -d $(OBJDIR)$(TUBEDIR) || mkdir $(OBJDIR)$(TUBEDIR)
 	test -d $(CACHEF) || touch $(CACHEF)
 
 %.c:

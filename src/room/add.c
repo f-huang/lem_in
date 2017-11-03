@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:23:45 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:17:05 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 18:35:00 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 
-int		main(void)
+void	room_add(t_room **rooms, const char *name, int x, int y)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	t_room	*new;
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	new = (t_room*)ft_memalloc(sizeof(t_room));
+	new->name = ft_strdup(name);
+	new->x = x;
+	new->y = y;
+	if (!*rooms)
+		*rooms = new;
+	else
 	{
-		if (ret == -1)
-			break ;
-		ft_strdel(&line);
+		new->next = (*rooms)->next;
+		*rooms = new;
 	}
-	if (line)
-		ft_strdel(&line);
-	return (0);
 }

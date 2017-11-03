@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 16:15:35 by fhuang            #+#    #+#             */
-/*   Updated: 2017/10/19 11:46:05 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/03 18:10:30 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,24 @@ t_list	*get_fd(t_list **lst, int const fd)
 	t_list		*ptr;
 	t_gnl		gnl;
 
-	while (1)
+	ptr = *lst;
+	while (ptr)
 	{
-		if (*lst)
-		{
-			ptr = *lst;
-			while (ptr)
-			{
-				if (fd == (((t_gnl*)(ptr->content))->fd))
-					return (ptr);
-				ptr = ptr->next;
-			}
-		}
-		gnl.fd = (int)fd;
-		if ((gnl.lfo = ft_strnew(BUFF_SIZE)))
-		{
-			ft_lstadd(lst, ft_lstnew(&gnl, sizeof(gnl)));
-			return (*lst);
-		}
-		else
-			return (0);
+		if (fd == (((t_gnl*)(ptr->content))->fd))
+			return (ptr);
+		ptr = ptr->next;
 	}
+	ft_bzero(&gnl, sizeof(t_gnl));
+	gnl.fd = (int)fd;
+	if ((gnl.lfo = ft_strnew(BUFF_SIZE)))
+	{
+		ptr = ft_lstnew(&gnl, sizeof(gnl));
+		if (ptr)
+			ft_lstadd(lst, ptr);
+		return (*lst);
+	}
+	else
+		return (0);
 }
 
 int		read_fd(t_list *lst, int const fd)
@@ -60,10 +57,11 @@ int		read_fd(t_list *lst, int const fd)
 			save = ret;
 		buf[ret] = '\0';
 		tmp = ((t_gnl*)(lst->content))->lfo;
-		if (!(((t_gnl*)(lst->content))->lfo =
-					ft_strjoin(((t_gnl*)(lst->content))->lfo, buf)))
+		((t_gnl*)(lst->content))->lfo =
+					ft_strjoin(((t_gnl*)(lst->content))->lfo, buf);
+		ft_strdel(&tmp);
+		if (!((t_gnl*)(lst->content))->lfo)
 			return (-1);
-		free(tmp);
 	}
 	return (save ? save : ret);
 }
@@ -114,20 +112,14 @@ int		update_lfo(t_list **lst, char **line, t_list *tmp, int ret)
 
 int		get_next_line(int const fd, char **line)
 {
+	static t_list	*lst = NULL;
 	int				ret;
-	static t_list	**lst = NULL;
 	t_list			*tmp;
 
 	if (fd < 0 || BUFF_SIZE <= 0 || line == NULL)
 		return (-1);
-	if (lst == NULL)
-	{
-		if (!(lst = (t_list**)malloc(sizeof(t_list*))))
-			return (-1);
-		*lst = NULL;
-	}
-	tmp = get_fd(lst, fd);
+	tmp = get_fd(&lst, fd);
 	if ((ret = read_fd(tmp, fd)) == -1)
 		return (-1);
-	return (update_lfo(lst, line, tmp, ret));
+	return (update_lfo(&lst, line, tmp, ret));
 }

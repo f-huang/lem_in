@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:23:45 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:36:22 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 18:38:46 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 
-int		main(void)
+void	tube_add(t_tube **tubes, t_room *gate1, t_room *gate2)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	t_tube	*new;
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	if (!gate1 || !gate2)
+		return ;
+	new = (t_tube*)ft_memalloc(sizeof(t_tube));
+	new->gate1 = gate1;
+	new->gate2 = gate2;
+	if (!*tubes)
+		*tubes = new;
+	else
 	{
-		if (ret == -1)
-			break ;
-		ft_strdel(&line);
+		new->next = (*tubes)->next;
+		*tubes = new;
 	}
-	if (line)
-		ft_strdel(&line);
-	return (0);
 }

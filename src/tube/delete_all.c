@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   delete_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:23:45 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:36:44 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 18:39:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 
-int		main(void)
+void	tube_delete_all(t_tube **tubes)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	t_tube	*iterator;
+	t_tube	*previous;
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	previous = NULL;
+	iterator = *tubes;
+	while (iterator)
 	{
-		if (ret == -1)
-			break ;
-		ft_strdel(&line);
+		previous = iterator;
+		iterator = iterator->next;
+		ft_memdel((void**)&previous);
 	}
-	if (line)
-		ft_strdel(&line);
-	return (0);
 }

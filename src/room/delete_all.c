@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   delete_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:23:45 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:24:11 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 18:36:18 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
+#include "libft.h"
 
-int		main(void)
+void	room_delete_all(t_room **rooms)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	t_room	*iterator;
+	t_room	*previous;
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	previous = NULL;
+	iterator = *rooms;
+	while (iterator)
 	{
-		if (ret == -1)
-			break ;
-		ft_strdel(&line);
+		previous = iterator;
+		iterator = iterator->next;
+		ft_strdel(&previous->name);
+		ft_memdel((void**)&previous);
 	}
-	if (line)
-		ft_strdel(&line);
-	return (0);
 }
