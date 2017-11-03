@@ -1,0 +1,5 @@
+obj/
+lem_in
+*.o
+*.a
+.cache_exists
