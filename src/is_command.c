@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   is_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 18:17:05 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 19:32:12 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 19:10:42 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 19:13:18 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
 #include "libft.h"
+#include "lem_in.h"
 
-void	room_add(t_room **rooms, const char *name, int x, int y)
+int		is_command(const char *line)
 {
-	t_room	*new;
-
-	if (!name)
-		return ;
-	new = (t_room*)ft_memalloc(sizeof(t_room));
-	new->name = ft_strdup(name);
-	new->x = x;
-	new->y = y;
-	if (!*rooms)
-		*rooms = new;
-	else
-	{
-		new->next = (*rooms)->next;
-		*rooms = new;
-	}
+	return (ft_strnequ(line, PREFIX_COMMAND, ft_strlen(PREFIX_COMMAND)));
 }

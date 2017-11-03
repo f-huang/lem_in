@@ -6,12 +6,14 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:49:02 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:39:45 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/03 19:32:29 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+
+# include <stddef.h>
 
 # define LEM_IN_ERROR "ERROR"
 
@@ -22,9 +24,10 @@
 # define COMMAND_START "start"
 # define COMMAND_END "end"
 
-# define TUBE_SEPARATOR "-"
+# define ROOM_SEPARATOR ' '
+# define TUBE_SEPARATOR '-'
 
-# define OUTPUT_DELIMITER "-"
+# define OUTPUT_DELIMITER '-'
 
 enum	e_game_step
 {
@@ -57,11 +60,36 @@ typedef struct	s_ant
 typedef struct	s_game
 {
 	t_ant				*ants;
+	size_t				nb_ants;
 	t_tube				*tubes;
 	t_room				*rooms;
 	t_room				*entry;
 	t_room				*exit;
 	enum e_game_step	step;
 }				t_game;
+
+/*
+**	ROOM
+*/
+
+void			room_add(t_room **rooms, const char *name, int x, int y);
+void			room_delete_all(t_room **rooms);
+
+/*
+**	TUBE
+*/
+void			tube_add(t_tube **tubes, t_room *gate1, t_room *gate2);
+void			tube_delete_all(t_tube **tubes);
+
+/*
+**	GAME
+*/
+int				handle_line(t_game *game, const char *line);
+
+int				is_comment(const char *line);
+int				is_command(const char *line);
+int				is_room(t_game *game, const char *line);
+
+int				read_nb_ants(t_game *game, const char *line);
 
 #endif

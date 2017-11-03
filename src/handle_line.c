@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   handle_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 18:17:05 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 19:32:12 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 19:12:27 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "libft.h"
 
-void	room_add(t_room **rooms, const char *name, int x, int y)
+int		handle_line(t_game *game, const char *line)
 {
-	t_room	*new;
+	static int	((*f[])(t_game *, const char*)) = {
+		[READ_NB_ANTS] = read_nb_ants
+	};
 
-	if (!name)
-		return ;
-	new = (t_room*)ft_memalloc(sizeof(t_room));
-	new->name = ft_strdup(name);
-	new->x = x;
-	new->y = y;
-	if (!*rooms)
-		*rooms = new;
-	else
-	{
-		new->next = (*rooms)->next;
-		*rooms = new;
-	}
+	if (is_comment(line))
+		return (1);
+	return (f[game->step](game, line));
 }

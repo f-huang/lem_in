@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:48:08 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 14:31:39 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/03 19:00:33 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int					ft_isspace(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_iswhitespace(int c);
-int					ft_isint(char *str);
+int					ft_isint(const char *str);
 int					ft_isacharinstring(int c, const char *s);
 int					ft_toupper(int c);
 int					ft_tolower(int c);

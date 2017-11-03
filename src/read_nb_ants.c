@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   read_nb_ants.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 18:17:05 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 19:32:12 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/03 18:52:21 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/03 18:59:05 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
 #include "libft.h"
+#include "lem_in.h"
 
-void	room_add(t_room **rooms, const char *name, int x, int y)
+int		read_nb_ants(t_game *game, const char *line)
 {
-	t_room	*new;
+	int		nb;
 
-	if (!name)
-		return ;
-	new = (t_room*)ft_memalloc(sizeof(t_room));
-	new->name = ft_strdup(name);
-	new->x = x;
-	new->y = y;
-	if (!*rooms)
-		*rooms = new;
-	else
-	{
-		new->next = (*rooms)->next;
-		*rooms = new;
-	}
+	if (!ft_isstrdigit(line) || !ft_isint(line))
+		return (0);
+	nb = ft_atoi(line);
+	if (nb < 1)
+		return (0);
+	game->nb_ants = (size_t)nb;
+	game->step = READ_ROOMS;
+	return (1);
 }

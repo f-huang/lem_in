@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/03 18:39:29 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/03 19:32:45 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,11 @@ INCDIR	:=	include/
 LIBFT	:=	libft/
 LIBDIR	:=	lib/
 SRC		:=	main.c					\
+			handle_line.c			\
+			is_command.c			\
+			is_comment.c			\
+			is_room.c				\
+			read_nb_ants.c			\
 			$(ROOMDIR)add.c			\
 			$(ROOMDIR)delete_all.c	\
 			$(TUBEDIR)add.c			\
