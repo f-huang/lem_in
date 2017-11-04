@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/03 19:32:45 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/04 14:51:40 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,12 +88,12 @@ norme:
 	norminette $(LIBFT)$(SRCDIR) $(LIBFT)$(INCDIR) | grep -v Norme -B1 || true
 
 clean:
-	make -C $(LIBFT) clean
+	make clean -C $(LIBFT)
 	rm -rf $(OBJDIR) $(CACHEF)
 	printf $(YELLOW)"All objects removed\n"$(EOC)
 
 fclean: clean
-	make -C $(LIBFT) fclean
+	make fclean -C $(LIBFT)
 	rm -f $(NAME)
 	printf $(RED)"$(NAME) removed\n"$(EOC)
 

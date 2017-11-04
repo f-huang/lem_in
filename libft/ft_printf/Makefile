@@ -6,13 +6,14 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 11:38:13 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/03 09:43:21 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/04 14:50:23 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Editable =====
 LIBFT	:=	../
-LIBDIR	:=	$(LIBFT)lib/
+LIBNAME	:= lib/
+LIBDIR	:=	$(LIBFT)$(LIBNAME)
 NAME	:=	$(addprefix $(LIBDIR), libftprintf.a)
 # ====================
 
@@ -74,7 +75,7 @@ CACHEF			:=	.cache_exists
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "\033[32m" "-> Libft" "\033[0m"
+	@echo "\033[32m" "-> ft_printf" "\033[0m"
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 

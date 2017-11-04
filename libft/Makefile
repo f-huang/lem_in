@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/03 14:24:50 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/04 14:55:30 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS	:=	-Wall -Wextra -Werror -g3
 SRCDIR	:=	src/
 OBJDIR	:=	obj/
 INCDIR	:=	include/
+PRINTFDIR	:=	ft_printf/
 SRC		:=	btree_apply_infix.c		\
 			btree_apply_prefix.c	\
 			btree_apply_suffix.c	\
@@ -133,7 +134,6 @@ SRC		:=	btree_apply_infix.c		\
 			read_stdin.c
 OBJ		:=	$(SRC:%.c=$(OBJDIR)%.o)
 INC		:=	-I./$(INCDIR)
-PRINTF	:= ./ft_printf
 CACHEF	:=	.cache_exists
 # ====================
 
@@ -154,13 +154,13 @@ WHITE		= "\033[0;37m"
 EXEC			:= $(addprefix $(LIBDIR), $(NAME))
 CACHEF			:=	.cache_exists
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all ft_printf
 .SILENT:
 
-all : $(NAME)
+all: ft_printf $(NAME)
 
 $(NAME): $(OBJ)
-	echo "\033[32m" "-> Libft" "\033[0m"
+	echo "\033[32m" "-> libft" "\033[0m"
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
@@ -172,10 +172,15 @@ $(CACHEF):
 	test -d $(LIBDIR) || mkdir $(LIBDIR)
 	test -d $(CACHEF) || touch $(CACHEF)
 
+ft_printf:
+	make -C $(PRINTFDIR)
+
 clean:
 	rm -rf $(OBJDIR) $(CACHEF)
+	make clean -C $(PRINTFDIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(PRINTFDIR)
 
 re: fclean all
