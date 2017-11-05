@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/04 18:49:27 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/05 15:38:57 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC		:=	main.c					\
 			set_entry_exit.c		\
 			$(ROOMDIR)add.c			\
 			$(ROOMDIR)delete_all.c	\
-			$(ROOMDIR)find.c	\
+			$(ROOMDIR)find.c		\
+			$(ROOMDIR)find_with_coordinates.c	\
 			$(TUBEDIR)add.c			\
 			$(TUBEDIR)delete_all.c
 OBJ		:=	$(SRC:%.c=$(OBJDIR)%.o)

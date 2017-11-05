@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:48:08 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 19:00:33 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 15:52:01 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ char				*ft_strtrim(char const *s);
 char				*ft_trim_c(char const *s, char c);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoin_free(char *s1, char const *s2);
+char				*ft_str3join(char *s1, char *s2, char *s3);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strnstr(const char *s1, const char *s2, size_t n);

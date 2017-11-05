@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/04 14:55:30 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/05 15:52:13 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC		:=	btree_apply_infix.c		\
 			ft_striteri.c			\
 			ft_strjoin.c			\
 			ft_strjoin_free.c		\
+			ft_str3join.c		\
 			ft_strlcat.c			\
 			ft_strlen.c				\
 			ft_strmap.c				\

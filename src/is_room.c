@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:15:13 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 18:31:00 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 15:55:16 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,41 @@ static char	*get_room_name(char **tab, int tablen)
 	while (name && i + 1 < tablen - 2)
 	{
 		tmp = name;
-		name = ft_strjoin(tab[i], tab[i + 1]);
+		name = ft_str3join(tab[i], " ", tab[i + 1]);
 		ft_strdel(&tmp);
 		++i;
 	}
 	return (name);
 }
 
-static void	create_room(t_game *game, char **tab, int len)
+static int	is_room_unique(t_room *rooms, const char *name, int x, int y)
+{
+	t_room	*tmp;
+
+	tmp = room_find(rooms, name);
+	if (tmp != NULL)
+		return (0);
+	tmp = room_find_with_coordinates(rooms, x, y);
+	return (tmp == NULL);
+}
+
+static int	create_room(t_game *game, char **tab, int len)
 {
 	char	*name;
 	int		x;
 	int		y;
+	int		ret;
 
 	x = ft_atoi(tab[len - 2]);
 	y = ft_atoi(tab[len - 1]);
-	len = 0;
-	name = get_room_name(tab, len);
-	room_add(&game->rooms, name, x , y);
+	if (len > 3)
+		name = get_room_name(tab, len);
+	else
+		name = ft_strdup(tab[0]);
+	if ((ret = is_room_unique(game->rooms, name, x, y)))
+		room_add(&game->rooms, name, x , y);
+	ft_strdel(&name);
+	return (ret);
 }
 
 int		is_room(t_game *game, const char *line)
@@ -58,9 +75,7 @@ int		is_room(t_game *game, const char *line)
 		ft_tabfree(&tab);
 		return (0);
 	}
-	//Check if name already taken
-	//Check if position (x,y) already taken
-	create_room(game, tab, len);
+	len = create_room(game, tab, len);
 	ft_tabfree(&tab);
-	return (1);
+	return (len);
 }

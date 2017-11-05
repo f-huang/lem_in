@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 21:24:20 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 15:40:17 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		handle_line(t_game *game, const char *line)
 							// yes return 1
 							// no return 0
 	}
-	return (is_tube(game, line));
+	else
+		return (is_tube(game, line));
 	//return is tube
-	return (1);
 }

@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   find_with_coordinates.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 18:17:05 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 15:54:50 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/05 15:35:42 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/05 15:39:18 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
 #include "libft.h"
+#include "lem_in.h"
 
-void	room_add(t_room **rooms, const char *name, int x, int y)
+t_room	*room_find_with_coordinates(t_room *rooms, int x, int y)
 {
-	t_room	*new;
+	t_room	*iterator;
 
-	if (!name)
-		return ;
-	new = (t_room*)ft_memalloc(sizeof(t_room));
-	new->name = ft_strdup(name);
-	new->x = x;
-	new->y = y;
-	if (!*rooms)
-		*rooms = new;
-	else
+	iterator = rooms;
+	while (iterator)
 	{
-		new->next = *rooms;
-		*rooms = new;
+		if (iterator->x == x && iterator-> y == y)
+			return (iterator);
+		iterator = iterator->next;
 	}
+	return (NULL);
 }

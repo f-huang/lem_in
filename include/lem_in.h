@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:49:02 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 18:49:15 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 15:36:39 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_game
 void				room_add(t_room **rooms, const char *name, int x, int y);
 void				room_delete_all(t_room **rooms);
 t_room				*room_find(t_room *rooms, const char *name);
+t_room				*room_find_with_coordinates(t_room *rooms, int x, int y);
 
 /*
 **	TUBE
