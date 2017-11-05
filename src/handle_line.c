@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 15:40:17 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 16:23:47 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int		handle_line(t_game *game, const char *line)
 	}
 	if (!game->tubes)
 	{
-		if (!game->nb_ants)
-			return (0);
 		if ((ret = is_room(game, line)))
 		{
 			ft_putendlcol("room", YELLOW);
@@ -57,26 +55,14 @@ int		handle_line(t_game *game, const char *line)
 		{
 			if (game->next_action & ACTION_START || game->next_action & ACTION_END)
 				return (0);
-			return (is_tube(game, line));
+			if (is_tube(game, line))
+			{
+				ft_putendlcol("tube", YELLOW);
+				return (game->rooms != NULL);
+			}
+			return (0);
 		}
-		//is room
-			// yes
-				// is start || end
-					// desactivate flag
-					// if already set
-						//return 0
-					// set entry || exit
-				// return 1
-			// no
-				// is flag start || end set
-					// yes
-						// return 0
-					// no
-						//check if tube
-							// yes return 1
-							// no return 0
 	}
 	else
 		return (is_tube(game, line));
-	//return is tube
 }

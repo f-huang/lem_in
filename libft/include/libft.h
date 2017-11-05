@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:48:08 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 15:52:01 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/05 17:29:32 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define COLOR_RESET "\x1b[0m"
 
 # define FT_DEBUG(FORMAT, ...) (ft_printf("[DEBUG]  "FORMAT"\n", ##__VA_ARGS__))
+
+# define STRINGIFY_MACRO_VALUE(x) STRINGIFY_MACRO_NAME(x)
+# define STRINGIFY_MACRO_NAME(x) #x
 
 /*
 **	GNL.H
