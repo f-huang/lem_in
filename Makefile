@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/04 14:51:40 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/04 18:49:27 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,18 @@ INCDIR	:=	include/
 LIBFT	:=	libft/
 LIBDIR	:=	lib/
 SRC		:=	main.c					\
+			get_command_enum.c		\
+			get_command_name.c		\
 			handle_line.c			\
 			is_command.c			\
 			is_comment.c			\
 			is_room.c				\
+			is_tube.c				\
 			read_nb_ants.c			\
+			set_entry_exit.c		\
 			$(ROOMDIR)add.c			\
 			$(ROOMDIR)delete_all.c	\
+			$(ROOMDIR)find.c	\
 			$(TUBEDIR)add.c			\
 			$(TUBEDIR)delete_all.c
 OBJ		:=	$(SRC:%.c=$(OBJDIR)%.o)

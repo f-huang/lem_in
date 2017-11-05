@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:15:13 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 19:33:26 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/04 18:31:00 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		is_room(t_game *game, const char *line)
 		ft_tabfree(&tab);
 		return (0);
 	}
+	//Check if name already taken
+	//Check if position (x,y) already taken
 	create_room(game, tab, len);
 	ft_tabfree(&tab);
 	return (1);

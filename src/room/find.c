@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 17:43:27 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/04 18:48:17 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/04 18:49:10 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem_in.h"
 
-int		main(void)
+t_room	*room_find(t_room *rooms, const char *name)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	t_room	*iterator;
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	if (!name || ft_isstrempty(name))
+		return (0);
+	iterator = rooms;
+	while (iterator)
 	{
-		if (ret == -1)
-			break ;
-		if (!line || ft_isstrempty(line) || !handle_line(&game, line))
-			break ;
-		ft_strdel(&line);
+		if (ft_strequ(iterator->name, name))
+			return (iterator);
+		iterator = iterator->next;
 	}
-	if (line)
-		ft_strdel(&line);
-	//Launch game
-	return (0);
+	return (NULL);
 }

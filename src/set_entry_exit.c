@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_entry_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 17:43:27 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/04 17:58:07 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/04 18:06:13 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
 
-int		main(void)
+int		set_entry_exit(t_game *game)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
-
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
+	if (game->next_action & ACTION_START)
 	{
-		if (ret == -1)
-			break ;
-		if (!line || ft_isstrempty(line) || !handle_line(&game, line))
-			break ;
-		ft_strdel(&line);
+		if (game->entry != NULL)
+			return (0);
+		game->entry = game->rooms;
+		game->next_action ^= ACTION_START;
 	}
-	if (line)
-		ft_strdel(&line);
-	//Launch game
-	return (0);
+	else if (game->next_action & ACTION_END)
+	{
+		if (game->exit != NULL)
+			return (0);
+		game->exit = game->rooms;
+		game->next_action ^= ACTION_END;
+	}
+	return (1);
 }

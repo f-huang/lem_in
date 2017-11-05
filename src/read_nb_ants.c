@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:52:21 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/03 18:59:05 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/04 15:27:01 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int		read_nb_ants(t_game *game, const char *line)
 	if (nb < 1)
 		return (0);
 	game->nb_ants = (size_t)nb;
-	game->step = READ_ROOMS;
+	// game->step = READ_ROOMS;
 	return (1);
 }

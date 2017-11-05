@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_command_name.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 17:43:27 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/04 15:06:35 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/04 15:08:37 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "lem_in.h"
 
-int		main(void)
+const char	*get_command_name(enum e_game_command command)
 {
-	t_game	game;
-	char	*line;
-	int		ret;
+	static const char	*names[] = {
+		[START] = COMMAND_START,
+		[END] = COMMAND_END
+	};
 
-	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
-	{
-		if (ret == -1)
-			break ;
-		if (!line || ft_isstrempty(line) || !handle_line(&game, line))
-			break ;
-		ft_strdel(&line);
-	}
-	if (line)
-		ft_strdel(&line);
-	//Launch game
-	return (0);
+	return (names[command]);
 }
