@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:15:13 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 17:29:37 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/06 19:15:41 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 
 static char	*get_room_name(char **tab, int tablen)
 {
+	const char	pattern[2]
 	char	*name;
 	char	*tmp;
 	int		i;
 
+	pattern[0] = ROOM_SEPARATOR;
+	pattern[1] = 0;
 	name = ft_strnew(0);
 	i = 0;
 	while (name && i + 1 < tablen - 2)
 	{
 		tmp = name;
-		name = ft_str3join(tab[i], STRINGIFY_MACRO_VALUE(ROOM_SEPARATOR), tab[i + 1]);
+		name = ft_str3join(tab[i], pattern, tab[i + 1]);
 		ft_strdel(&tmp);
 		++i;
 	}
