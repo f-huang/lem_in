@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/05 15:38:57 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/07 21:41:09 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC		:=	main.c					\
 			$(ROOMDIR)find.c		\
 			$(ROOMDIR)find_with_coordinates.c	\
 			$(TUBEDIR)add.c			\
-			$(TUBEDIR)delete_all.c
+			$(TUBEDIR)delete_all.c	\
+			$(TUBEDIR)find.c
 OBJ		:=	$(SRC:%.c=$(OBJDIR)%.o)
 INC		:=	-I./$(INCDIR) -I./$(LIBFT)$(INCDIR)
 LIBPATH	:=	-L./$(LIBFT)$(LIBDIR) -lft -lftprintf
