@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:10:42 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 17:49:12 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 22:44:17 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		is_command(int *action, const char *line)
 		}
 		else if (ft_isstrempty(str))
 			ret = 0;
+		ft_strdel(&str);
 	}
-	ft_strdel(&str);
 	return (ret);
 }

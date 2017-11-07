@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/07 21:55:59 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 22:48:28 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int		handle_line(t_game *game, const char *line)
 		if (!game->tubes && (ret = is_room(game, trimmed)))
 		{
 			ft_putendlcol("room", YELLOW);
-			return (ret == -1 || game->tubes ? 0 : set_entry_exit(game));
+			return (ret == 0 ? 0 : set_entry_exit(game));
 		}
 		else
 		{
-			if (ret && (game->next_action & ACTION_START || game->next_action & ACTION_END))
+			if (!ret && (game->next_action & ACTION_START || game->next_action & ACTION_END))
 				return (0);
-			if (game->rooms && is_tube(game, trimmed))
+			else if (game->rooms && game->entry && game->exit && is_tube(game, trimmed))
 			{
 				ft_putendlcol("tube", YELLOW);
 				return (1);

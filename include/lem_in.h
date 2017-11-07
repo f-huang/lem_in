@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:49:02 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/07 21:40:48 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 22:14:09 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define PREFIX_ANT "L"
 # define PREFIX_COMMENT "#"
 # define PREFIX_COMMAND "##"
+# define INVALID_PREFIX_ROOM "L"
 
 # define NB_COMMANDS 2
 
