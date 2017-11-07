@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/07 21:17:02 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 21:55:59 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	should_command_be_here(t_game game)
 int		handle_line(t_game *game, const char *line)
 {
 	int		ret;
+	char	*trimmed;
 
 	if (is_comment(line))
 	{
@@ -39,15 +40,17 @@ int		handle_line(t_game *game, const char *line)
 		ft_printf("^YELLOW^command : %s\n^EOC^", ret ? "should be here" : "should not be here");
 		return (ret);
 	}
+	if (!(trimmed = ft_strtrim(line)))
+		return (0);
 	if (game->nb_ants == 0)
 	{
 		ft_putendlcol("nb_ants", YELLOW);
-		return (read_nb_ants(game, line));
+		return (read_nb_ants(game, trimmed));
 	}
 	else
 	{
 		ret = 1;
-		if (!game->tubes && (ret = is_room(game, line)))
+		if (!game->tubes && (ret = is_room(game, trimmed)))
 		{
 			ft_putendlcol("room", YELLOW);
 			return (ret == -1 || game->tubes ? 0 : set_entry_exit(game));
@@ -56,7 +59,7 @@ int		handle_line(t_game *game, const char *line)
 		{
 			if (ret && (game->next_action & ACTION_START || game->next_action & ACTION_END))
 				return (0);
-			if (game->rooms && is_tube(game, line))
+			if (game->rooms && is_tube(game, trimmed))
 			{
 				ft_putendlcol("tube", YELLOW);
 				return (1);
