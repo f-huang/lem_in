@@ -6,65 +6,47 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 18:20:50 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/06 19:15:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 21:42:18 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem_in.h"
 
-static void	find_corresponding_rooms(t_room *rooms, const char *line)
+static int	find_corresponding_rooms(t_room *rooms, const char *line, t_room **gate1, t_room **gate2)
 {
-	const char	pattern[2]
-	t_room	*room;
-	char	*tmp;
+	static const char	pattern[2] = {TUBE_SEPARATOR, 0};
+	char				*part1;
+	char				*part2;
 
-	pattern[0] = TUBE_SEPARATOR;
-	pattern[1] = 0;
-	room = rooms;
-	ft_putendlcol(STRINGIFY_MACRO_VALUE(TUBE_SEPARATOR), GREEN);
-	tmp = ft_strstr(line, STRINGIFY_MACRO_VALUE(TUBE_SEPARATOR));
-	if (tmp)
-		ft_putendlcol(tmp, RED);
-	else
-		ft_putendlcol("(null)", RED);
-
+	part2 = ft_strstr(line, pattern);
+	while (part2 && *part2)
+	{
+		if (!(part1 = ft_strndup(line, (size_t)(part2 - line))))
+			return (0);
+		part2 += 1;
+		ft_printf("^RED^%s , %s^EOC^\n", part1, part2);
+		*gate1 = room_find(rooms, part1);
+		*gate2 = room_find(rooms, part2);
+		ft_strdel(&part1);
+		if (*gate1 && *gate2)
+			return (1);
+		ft_printf("%p - %p\n", *gate1, *gate2);
+		part2 = ft_strstr(part2, pattern);
+	}
+	return (0);
 }
 
-int		is_tube(t_game *game, const char *line)
+int			is_tube(t_game *game, const char *line)
 {
-	char	**tab;
-	t_room	*gate1;
-	t_room	*gate2;
-	int		len;
+	t_room				*gate1;
+	t_room				*gate2;
 
-	if (!(tab = ft_strsplit(line, TUBE_SEPARATOR)))
+	gate1 = NULL;
+	gate2 = NULL;
+	if (!ft_strfind_c(line, TUBE_SEPARATOR))
 		return (0);
-	if ((len = ft_tablen(tab)) < 2)
-	{
-		ft_tabfree(&tab);
-		return (0);
-	}
-	else if (len == 2)
-	{
-		if (!(gate1 = room_find(game->rooms, tab[0]))\
-			|| !(gate2 = room_find(game->rooms, tab[1])) || gate1 == gate2)
-			return (0);
+	if ((find_corresponding_rooms(game->rooms, line, &gate1, &gate2)))
 		tube_add(&game->tubes, gate1, gate2);
-	}
-	else
-	{
-		find_corresponding_rooms(game->rooms, line);
-		// Find names with '-'
-			// not found
-				// return error
-			// found
-				// check if corresponds
-					// yes
-						// create tube
-					// no
-						// return error
-	}
-	ft_tabfree(&tab);
-	return (1);
+	return (gate1 && gate2);
 }

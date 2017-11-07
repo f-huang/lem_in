@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:49:02 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 15:36:39 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 21:40:48 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_room				*room_find_with_coordinates(t_room *rooms, int x, int y);
 */
 void				tube_add(t_tube **tubes, t_room *gate1, t_room *gate2);
 void				tube_delete_all(t_tube **tubes);
+t_tube				*tube_find(t_tube *tubes, t_room *needle1, t_room *needle2);
 
 /*
 **	GAME

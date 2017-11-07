@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:46:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 16:23:47 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 21:17:02 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,24 @@ int		handle_line(t_game *game, const char *line)
 		ft_putendlcol("nb_ants", YELLOW);
 		return (read_nb_ants(game, line));
 	}
-	if (!game->tubes)
+	else
 	{
-		if ((ret = is_room(game, line)))
+		ret = 1;
+		if (!game->tubes && (ret = is_room(game, line)))
 		{
 			ft_putendlcol("room", YELLOW);
-			return (ret == -1 ? 0 : set_entry_exit(game));
+			return (ret == -1 || game->tubes ? 0 : set_entry_exit(game));
 		}
 		else
 		{
-			if (game->next_action & ACTION_START || game->next_action & ACTION_END)
+			if (ret && (game->next_action & ACTION_START || game->next_action & ACTION_END))
 				return (0);
-			if (is_tube(game, line))
+			if (game->rooms && is_tube(game, line))
 			{
 				ft_putendlcol("tube", YELLOW);
-				return (game->rooms != NULL);
+				return (1);
 			}
 			return (0);
 		}
 	}
-	else
-		return (is_tube(game, line));
 }

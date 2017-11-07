@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:15:13 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/06 19:15:41 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/07 21:42:10 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 static char	*get_room_name(char **tab, int tablen)
 {
-	const char	pattern[2]
-	char	*name;
-	char	*tmp;
-	int		i;
+	static const char	pattern[2] = {ROOM_SEPARATOR, 0};
+	char				*name;
+	char				*tmp;
+	int					i;
 
-	pattern[0] = ROOM_SEPARATOR;
-	pattern[1] = 0;
 	name = ft_strnew(0);
 	i = 0;
 	while (name && i + 1 < tablen - 2)
@@ -36,7 +34,7 @@ static char	*get_room_name(char **tab, int tablen)
 
 static int	is_room_unique(t_room *rooms, const char *name, int x, int y)
 {
-	t_room	*tmp;
+	t_room				*tmp;
 
 	tmp = room_find(rooms, name);
 	if (tmp != NULL)
@@ -47,10 +45,10 @@ static int	is_room_unique(t_room *rooms, const char *name, int x, int y)
 
 static int	create_room(t_game *game, char **tab, int len)
 {
-	char	*name;
-	int		x;
-	int		y;
-	int		ret;
+	char				*name;
+	int					x;
+	int					y;
+	int					ret;
 
 	x = ft_atoi(tab[len - 2]);
 	y = ft_atoi(tab[len - 1]);
@@ -64,10 +62,10 @@ static int	create_room(t_game *game, char **tab, int len)
 	return (ret);
 }
 
-int		is_room(t_game *game, const char *line)
+int			is_room(t_game *game, const char *line)
 {
-	char	**tab;
-	int		len;
+	char				**tab;
+	int					len;
 
 	if (!(tab = ft_strsplit(line, ROOM_SEPARATOR)))
 		return (0);
