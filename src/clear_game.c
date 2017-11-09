@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_entry_exit.c                                   :+:      :+:    :+:   */
+/*   clear_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/04 17:58:07 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 18:06:13 by fhuang           ###   ########.fr       */
+/*   Created: 2017/11/09 16:35:42 by fhuang            #+#    #+#             */
+/*   Updated: 2017/11/09 16:42:03 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "lem_in.h"
 
-int		set_entry_exit(t_game *game)
+void	clear_game(t_game *game)
 {
-	if (game->next_action & ACTION_START)
-	{
-		if (game->entry != NULL)
-			return (0);
-		game->entry = game->rooms;
-		game->next_action ^= ACTION_START;
-	}
-	else if (game->next_action & ACTION_END)
-	{
-		if (game->exit != NULL)
-			return (0);
-		game->exit = game->rooms;
-		game->next_action ^= ACTION_END;
-	}
-	return (1);
+	room_delete_all(&game->rooms);
+	tube_delete_all(&game->tubes);
+	if (game->ants)
+		ft_memdel((void**)&game->ants);
+	ft_bzero(game, sizeof(t_game));
 }

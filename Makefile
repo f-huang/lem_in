@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/07 21:41:09 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/09 16:37:44 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,15 +29,17 @@ INCDIR	:=	include/
 LIBFT	:=	libft/
 LIBDIR	:=	lib/
 SRC		:=	main.c					\
+			init_game.c				\
+			clear_game.c			\
 			get_command_enum.c		\
 			get_command_name.c		\
 			handle_line.c			\
 			is_command.c			\
 			is_comment.c			\
+			is_game_ready.c			\
 			is_room.c				\
 			is_tube.c				\
 			read_nb_ants.c			\
-			set_entry_exit.c		\
 			$(ROOMDIR)add.c			\
 			$(ROOMDIR)delete_all.c	\
 			$(ROOMDIR)find.c		\

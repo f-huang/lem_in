@@ -6,14 +6,14 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:36:22 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/05 16:26:38 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/09 16:17:36 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 
-void	tube_add(t_tube **tubes, t_room *gate1, t_room *gate2)
+void	tube_add(t_tube **tubes, size_t *size, t_room *gate1, t_room *gate2)
 {
 	t_tube	*new;
 
@@ -29,4 +29,5 @@ void	tube_add(t_tube **tubes, t_room *gate1, t_room *gate2)
 		new->next = (*tubes)->next;
 		*tubes = new;
 	}
+	(*size)++;
 }

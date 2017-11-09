@@ -6,31 +6,27 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:48:34 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/04 17:43:27 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/09 16:54:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem_in.h"
 
+static int	error_encountered(t_game *game)
+{
+	clear_game(game);
+	ft_putendl_fd(LEM_IN_ERROR, 2);
+	return (1);
+}
+
 int		main(void)
 {
 	t_game	game;
-	char	*line;
-	int		ret;
 
 	ft_bzero(&game, sizeof(t_game));
-	line = NULL;
-	while ((ret = read_stdin(&line)))
-	{
-		if (ret == -1)
-			break ;
-		if (!line || ft_isstrempty(line) || !handle_line(&game, line))
-			break ;
-		ft_strdel(&line);
-	}
-	if (line)
-		ft_strdel(&line);
+	if (!init_game(&game) || !is_game_ready(game))
+		return (error_encountered(&game));
 	//Launch game
 	return (0);
 }

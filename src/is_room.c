@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 19:15:13 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/07 22:46:25 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/09 16:18:05 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	create_room(t_game *game, char **tab, int len)
 	if (name &&
 		!ft_strnequ(name, INVALID_PREFIX_ROOM, ft_strlen(INVALID_PREFIX_ROOM))\
 		&& (ret = is_room_unique(game->rooms, name, x, y)))
-		room_add(&game->rooms, name, x , y);
+		room_add(&game->rooms, &game->nb_rooms, name, x , y);
 	else
 		ret = 0;
 	ft_strdel(&name);

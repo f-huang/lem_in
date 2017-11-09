@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 18:20:50 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/07 21:52:27 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/09 16:18:00 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			is_tube(t_game *game, const char *line)
 	{
 		if (tube_find(game->tubes, gate1, gate2))
 			return (0);
-		tube_add(&game->tubes, gate1, gate2);
+		tube_add(&game->tubes, &game->nb_tubes, gate1, gate2);
 	}
 	return (gate1 && gate2);
 }
