@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/16 23:26:49 by fhuang            #+#    #+#              #
-#    Updated: 2017/11/09 16:37:44 by fhuang           ###   ########.fr        #
+#    Updated: 2017/11/11 19:04:36 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC		:=	main.c					\
 			$(ROOMDIR)delete_all.c	\
 			$(ROOMDIR)find.c		\
 			$(ROOMDIR)find_with_coordinates.c	\
+			$(ROOMDIR)add_destination.c	\
 			$(TUBEDIR)add.c			\
 			$(TUBEDIR)delete_all.c	\
 			$(TUBEDIR)find.c

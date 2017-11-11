@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 18:20:50 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/09 16:18:00 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/11 19:12:03 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			is_tube(t_game *game, const char *line)
 		return (0);
 	if ((find_corresponding_rooms(game->rooms, line, &gate1, &gate2)))
 	{
+		room_add_destination(&game->rooms, gate1, gate2);
 		if (tube_find(game->tubes, gate1, gate2))
 			return (0);
 		tube_add(&game->tubes, &game->nb_tubes, gate1, gate2);

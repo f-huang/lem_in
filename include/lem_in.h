@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 16:49:02 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/09 16:51:49 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/11 19:05:37 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@ typedef struct		s_room
 	char				*name;
 	int					x;
 	int					y;
+	int					is_occupied;
+	struct s_room		*destinations;
+	struct s_room		*next_destination;
 	struct s_room		*next;
 }					t_room;
+
+typedef struct		s_ant
+{
+	t_room				*position;
+	t_room				*coming_from;
+	int					has_played;
+}					t_ant;
 
 typedef struct		s_tube
 {
@@ -55,12 +65,6 @@ typedef struct		s_tube
 	t_room				*gate2;
 	struct s_tube		*next;
 }					t_tube;
-
-typedef struct		s_ant
-{
-	t_room				*position;
-	int					can_play;
-}					t_ant;
 
 typedef struct		s_game
 {
@@ -83,6 +87,7 @@ void				room_add(t_room **rooms, size_t *size, const char *name, int x, int y);
 void				room_delete_all(t_room **rooms);
 t_room				*room_find(t_room *rooms, const char *name);
 t_room				*room_find_with_coordinates(t_room *rooms, int x, int y);
+void				room_add_destination(t_room **rooms, t_room *gate1, t_room *gate2);
 
 /*
 **	TUBE

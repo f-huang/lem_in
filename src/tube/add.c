@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 18:36:22 by fhuang            #+#    #+#             */
-/*   Updated: 2017/11/09 16:17:36 by fhuang           ###   ########.fr       */
+/*   Updated: 2017/11/11 19:03:56 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	tube_add(t_tube **tubes, size_t *size, t_room *gate1, t_room *gate2)
 		*tubes = new;
 	else
 	{
-		new->next = (*tubes)->next;
+		new->next = *tubes;
 		*tubes = new;
 	}
 	(*size)++;
